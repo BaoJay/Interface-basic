@@ -1,19 +1,7 @@
-type AddFn = (a:number, b:number) => number;
-
-interface AddFn {
-  (a: number, b: number): number;
-}
-
-let add: AddFn;
-
-add = (n1: number, n2: number) => {
-  return n1 + n2;
-}
-
-
 // Define a interface
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string;
 }
 
 interface Greetable extends Named {
@@ -21,12 +9,19 @@ interface Greetable extends Named {
 }
 
 class Person implements Greetable {
+  name?: string;
   age = 26;
-  constructor(public name: string) {
-
+  constructor(name?: string) {
+    if (name) {
+      this.name = name;
+    }
   }
   greet(phrase: string) {
-    console.log(phrase + " " + this.name)
+    if (this.name) {
+      console.log(phrase + " " + this.name)
+    } else {
+      console.log('Hi')
+    }
   }
 }
 
@@ -34,7 +29,7 @@ class Person implements Greetable {
 let user1: Person; //the same
 
 
-user1 = new Person('Bao')
+user1 = new Person('Thi')
 
 console.log(user1);
 user1.greet('Hi there, I am');
