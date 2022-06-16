@@ -1,19 +1,27 @@
 // Define a interface
-interface Person {
-  name: string;
-  age: number;
+interface Greetable {
+  readonly name: string;
 
-  greet(phrase: string): void
+  greet(phrase: string): void;
 }
 
-let u1: Person;
+class Person implements Greetable {
+  age = 26;
+  constructor(public name: string) {
 
-u1 = {
-  name: 'Bao',
-  age: 26,
+  }
   greet(phrase: string) {
     console.log(phrase + " " + this.name)
   }
 }
 
-u1.greet('Hi there, I am');
+// let user1: Greetable;
+let user1: Person; //the same
+
+
+user1 = new Person('Bao')
+
+console.log(user1);
+user1.greet('Hi there, I am');
+
+user1.name = 'Tran';
