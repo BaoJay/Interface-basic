@@ -1,7 +1,9 @@
 // Define a interface
-interface Greetable {
+interface Named {
   readonly name: string;
+}
 
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
